@@ -24,7 +24,7 @@ Get the binary from [releases page](https://github.com/xetys/hetzner-kube/releas
 To get and build `hetzner-kube` from source run this command:
 
 ```
-$ go get -u github.com/xetys/hetzner-kube
+$ go get -u github.com/1scrooge/hetzner-kube
 ```
 
 The project source will now be in your `$GOPATH` directory (`$GOPATH/src/github.com/xetys/hetzner-kube`) and the binary will be in `$GOPATH/bin`.
