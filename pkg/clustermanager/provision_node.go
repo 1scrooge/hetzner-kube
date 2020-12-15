@@ -177,12 +177,6 @@ func (provisioner *NodeProvisioner) preparePackages() error {
 		return err
 	}
 
-	// Wireguard (built into Ubuntu 20.04 kernel already, tools are optional)
-	_, err = provisioner.communicator.RunCmd(provisioner.node, "apt install -y wireguard-tools")
-	if err != nil {
-		return err
-	}
-
 	return nil
 }
 
@@ -235,7 +229,7 @@ func (provisioner *NodeProvisioner) updateAndInstall() error {
 	}
 
 	provisioner.eventService.AddEvent(provisioner.node.Name, "installing packages")
-	command := fmt.Sprintf("apt-get install -y docker-ce kubelet=%s-00 kubeadm=%s-00 kubectl=%s-00 kubernetes-cni=0.8.7-00 wireguard linux-headers-generic linux-headers-virtual",
+        command := fmt.Sprintf("apt-get install -y docker-ce kubelet=%s-00 kubeadm=%s-00 kubectl=%s-00 kubernetes-cni=0.7.5-00 wireguard wireguard-tools linux-headers-$(uname -r) linux-headers-virtual",
 		provisioner.kubernetesVersion, provisioner.kubernetesVersion, provisioner.kubernetesVersion)
 	_, err = provisioner.communicator.RunCmd(provisioner.node, command)
 	if err != nil {
